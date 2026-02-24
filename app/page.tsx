@@ -35,9 +35,12 @@ export default function Home() {
   // Toggle completed
   const toggleTask = async (id: string, completed: boolean) => {
     await supabase.from("tasks").update({ completed: !completed }).eq("id", id);
-    fetchTasks();
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, completed: !completed } : task
+      )
+    );
   };
-
   // Delete task
   const deleteTask = async (id: string) => {
     await supabase.from("tasks").delete().eq("id", id);
