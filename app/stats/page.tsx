@@ -26,11 +26,15 @@ export default function Stats() {
       <p>Total tasks: {total}</p>
       <p>Completed: {completed}</p>
       <p>Open: {open}</p>
-      <div className="w-full bg-gray-300 rounded-full h-4 mt-2">
+
+      <div className="w-full bg-gray-300 rounded-full h-6 mt-2 relative">
         <div
-          className="bg-blue-500 h-4 rounded-full"
+          className="bg-blue-500 h-6 rounded-full"
           style={{ width: `${progress}%` }}
         ></div>
+        <span className="absolute left-1/2 top-0 transform -translate-x-1/2 text-white font-bold">
+          {progress}%
+        </span>
       </div>
     </div>
   );
