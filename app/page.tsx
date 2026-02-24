@@ -70,7 +70,11 @@ export default function Home() {
         <input
           className="border p-2 flex-1"
           value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
+          onChange={(e) => {
+            // only allow letters, numbers and spaces
+            const clean = e.target.value.replace(/[^a-zA-Z0-9 ]/g, "");
+            setNewTask(clean);
+          }}
           placeholder="New task"
         />
         <button onClick={addTask} className="bg-blue-500 text-white px-4 py-2 rounded">
