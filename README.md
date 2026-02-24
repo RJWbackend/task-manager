@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Task Manager App
 
-## Getting Started
+A simple full-stack task manager built with Next.js, React, TypeScript, and Supabase.
 
-First, run the development server:
+Overview
 
-```bash
+This project is a simple task management application where users can add, complete, and remove tasks. It includes a statistics page showing task progress and a feature that summarizes your tasks.
+
+The goal of this project is to demonstrate:
+
+- React state management
+
+- Data fetching with useEffect
+
+- Task management with Supabase (add, update, remove tasks)
+
+- Basic input sanitization
+
+- Routing with the Next.js App Router
+
+- TypeScript usage
+
+
+Features
+
+
+- Create new tasks
+
+- Mark tasks as completed
+
+- Delete tasks
+
+- View total, completed, and open tasks on stats page
+
+- Generate a task summary based on current tasks
+
+- Input sanitization (only letters, numbers, and spaces allowed)
+
+
+Tech Stack
+
+- Next.js (App Router)
+
+- React
+
+- TypeScript
+
+- Supabase (PostgreSQL)
+
+- Tailwind CSS
+
+Project Structure
+
+- app/page.tsx
+  Main page with full CRUD functionality and task summary.
+
+- app/stats/page.tsx
+  Statistics page showing task total, tasks completed, tasks open
+
+- lib/supabaseClient.ts
+  Supabase client configuration.
+
+
+Database
+
+Table name: tasks
+
+
+Columns:
+
+- id (string / uuid)
+
+- title (string)
+
+- completed (boolean)
+
+Getting Started
+1. Install dependencies
+npm install
+2. Create a .env.local file in the root of the project
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+3. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
+ in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Implementation Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Data is fetched on component mount using useEffect.
 
-## Learn More
+Application state is managed using useState.
 
-To learn more about Next.js, take a look at the following resources:
+Supabase prevents SQL injection via parameterized queries.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+User input is sanitized using a simple regex before storing it in the database.
